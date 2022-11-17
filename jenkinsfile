@@ -1,0 +1,17 @@
+pipeline {
+    agent {
+        node {
+            label 'agent2'
+            customWorkspace '/mnt/node2'
+        }
+    }
+    stages {
+        stage('httpd') { 
+          steps {
+            sh '''yum install httpd -y 
+            service httpd start
+            echo "hiii " >> /var/www/html/index.html'''
+          }  
+        }
+    }
+}
